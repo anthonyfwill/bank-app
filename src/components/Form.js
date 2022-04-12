@@ -1,5 +1,6 @@
 function Form(props){
   console.log(props.customizeText);
+
   return (
     <div>
       {props.customizeUsername &&
