@@ -16,7 +16,8 @@ class App extends Component {
       backgroundColor:"",
       customizeText: false,
       customizeBackgroundColor: false,
-      customizeUsername: false
+      customizeUsername: false,
+      canCustomize: false
     }
   }
 
@@ -25,6 +26,7 @@ class App extends Component {
     const currUser = e.target[0].value;
     //console.log(currUser);
     this.setState({user: currUser})
+    this.setState({customizeUsername: false})
   }
 
   changeTextColor = (e) => {
@@ -32,6 +34,7 @@ class App extends Component {
     const newTextColor = e.target[0].value;
     //console.log(currUser);
     this.setState({textColor: newTextColor})
+    this.setState({customizeText: false})
   }
 
   changeColorBackground = (e) => {
@@ -39,13 +42,15 @@ class App extends Component {
     const newBackgroundColor = e.target[0].value;
     //console.log(currUser);
     this.setState({backgroundColor: newBackgroundColor})
+    this.setState({customizeBackgroundColor: false})
   }
 
-  canCustomize = (e) => {
-    e.preventDefault();
-    const showOptions = true;
-    //console.log(currUser);
+  canCustomize = () => {
+    const showOptions = !(this.state.canCustomize);
+    this.setState({canCustomize: showOptions})
     this.setState({customizeText: showOptions})
+    this.setState({customizeBackgroundColor: showOptions})
+    this.setState({customizeUsername: showOptions})
   }
 
   /*changeBackgroundColor= (e) => {
@@ -61,10 +66,15 @@ class App extends Component {
         <style> {document.body.style.backgroundColor = this.state.backgroundColor}</style>
         <Clock user={this.state.user} />
         <h3>Customize your profile! <button type= "button" onClick={this.canCustomize}>Edit</button></h3>
+        {this.state.canCustomize &&
         <Form 
+          customizeText={this.state.customizeText}
+          customizeBackgroundColor={this.state.customizeBackgroundColor}
+          customizeUsername={this.state.customizeUsername}
           changeUser={this.changeUser} 
           changeTextColor={this.changeTextColor} 
           changeColorBackground={this.changeColorBackground} />
+        }
         <Content />   
       </div>
     );
