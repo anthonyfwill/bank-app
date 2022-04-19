@@ -42,7 +42,7 @@ class Content extends Component {
     let items = this.state.apiData;
     let list = [];
     console.log(items);
-    for(let i = 0; i < items.length; i++) {
+    for(let i = 0; i < items.length; ++i) {
       list.push(items[i]);
       list[i].date = list[i].date.slice(0,10);
     }
