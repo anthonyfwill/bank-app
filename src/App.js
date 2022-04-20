@@ -45,12 +45,21 @@ class App extends Component {
     this.setState({customizeBackgroundColor: false})
   }
 
-  canCustomize = () => {
-    const showOptions = !(this.state.canCustomize);
+  canCustomize = async () => {
+    await this.allConfirmed();
+    console.log("Didn't work", this.state.canCustomize, this.state.customizeText, this.state.customizeBackgroundColor, this.state.customizeUsername);
+    const showOptions = !(this.state.canCustomize)
     this.setState({canCustomize: showOptions})
     this.setState({customizeText: showOptions})
     this.setState({customizeBackgroundColor: showOptions})
     this.setState({customizeUsername: showOptions})
+  }
+
+  allConfirmed = () => {
+    if (this.state.canCustomize === true && this.state.customizeText === false && this.state.customizeBackgroundColor === false && this.state.customizeUsername === false) {
+      this.setState({canCustomize: false});
+      console.log("Worked");
+    }
   }
 
   /*changeBackgroundColor= (e) => {
