@@ -48,7 +48,7 @@ class Content extends Component {
     }
     let list2 = list.map((item, index) => {
       return (
-        <ul key={index}>{item.date} {item.description} {item.amount}</ul>
+        <ul key={index}>{item.date} {item.description} {item.amount} [ID: {item.id}]</ul>
       );
     });
     return list2;
